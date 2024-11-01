@@ -1,6 +1,6 @@
-import { ContentBlock } from "./content-block";
+import { TContentBlock } from "./content-block";
 
-export interface ContentBlockTile {
-    contentBlocks: ContentBlock[];
+export interface TContentBlockTile {
+    contentBlocks: TContentBlock[];
     prefixPathIds: string[];
 }

@@ -1,6 +1,6 @@
-import { ContentBlockVariety } from "../content-block-variety.types";
+import { TContentBlockVariety } from "../content-block-variety.types";
 
-export interface VideoContentBlock {
-    variety: ContentBlockVariety.Video;
+export interface TVideoContentBlock {
+    variety: TContentBlockVariety.Video;
     url: string;
 }

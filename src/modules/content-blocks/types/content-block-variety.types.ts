@@ -1,4 +1,4 @@
-export enum ContentBlockVariety {
+export enum TContentBlockVariety {
     Header = 'header',
     Paragraph = 'paragraph',
     Video = 'video',

@@ -1,6 +1,6 @@
-import { ContentBlockVariety } from "../content-block-variety.types";
+import { TContentBlockVariety } from "../content-block-variety.types";
 
-export interface HeaderContentBlock {
+export interface THeaderContentBlock {
     content: string;
-    variety: ContentBlockVariety.Header;
+    variety: TContentBlockVariety.Header;
 }

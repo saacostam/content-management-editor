@@ -1,6 +1,6 @@
-import { ContentBlockVariety } from "../content-block-variety.types";
+import { TContentBlockVariety } from "../content-block-variety.types";
 
-export interface ParagraphContentBlock {
+export interface TParagraphContentBlock {
     content: string;
-    variety: ContentBlockVariety.Paragraph;
+    variety: TContentBlockVariety.Paragraph;
 }
