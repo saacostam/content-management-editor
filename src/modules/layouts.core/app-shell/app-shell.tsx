@@ -1,5 +1,6 @@
 import { PropsWithChildren } from "react";
-import { Title } from "../../components.core";
+import { Paragraph, Title } from "../../components.core";
+import { PencilIcon } from "../../icons.core";
 
 export function AppShell({
     children,
@@ -14,8 +15,12 @@ export function AppShell({
 
 export function Header(){
     return (
-        <header className="border-b-2 border-gray-200 p-4 mb-8 bg-base-200">
-            <Title className="text-center text-base-content">Content Management Editor | React</Title>
+        <header className="border-b-2 border-gray-200 p-4 mb-8 bg-base-200 text-center ">
+            <Title className="text-base-content">
+                <PencilIcon/>{' '}
+                Content Management Editor
+            </Title>
+            <Paragraph>using React</Paragraph>
         </header>
     )
 }
