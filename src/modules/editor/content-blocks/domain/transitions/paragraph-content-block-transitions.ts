@@ -10,6 +10,7 @@ import {
 export const ParagraphContentBlockTransitions: TContentBlockTransitions<TParagraphContentBlock> = {
     toHeader: (contentBlock: TParagraphContentBlock): THeaderContentBlock => {
         return {
+            id: contentBlock.id,
             content: contentBlock.content,
             variety: TContentBlockVariety.Header,
         };
@@ -21,16 +22,18 @@ export const ParagraphContentBlockTransitions: TContentBlockTransitions<TParagra
         };
     },
 
-    toVideo: (): TVideoContentBlock => {
+    toVideo: (contentBlock: TParagraphContentBlock): TVideoContentBlock => {
         return {
+            id: contentBlock.id,
             url: "",
             variety: TContentBlockVariety.Video,
         };
     },
 
-    toTiled: (): TTiledContentBlock => {
+    toTiled: (contentBlock: TParagraphContentBlock): TTiledContentBlock => {
         return {
             contentBlocksTiles: [],
+            id: contentBlock.id,
             variety: TContentBlockVariety.Tiled,
         };
     },

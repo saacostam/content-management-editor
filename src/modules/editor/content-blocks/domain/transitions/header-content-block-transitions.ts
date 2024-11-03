@@ -17,20 +17,23 @@ export const HeaderContentBlockTransitions: TContentBlockTransitions<THeaderCont
     toParagraph: (contentBlock: THeaderContentBlock): TParagraphContentBlock => {
         return {
             content: contentBlock.content,
+            id: contentBlock.id,
             variety: TContentBlockVariety.Paragraph,
         };
     },
 
-    toVideo: (): TVideoContentBlock => {
+    toVideo: (contentBlock: THeaderContentBlock): TVideoContentBlock => {
         return {
+            id: contentBlock.id,
             url: "",
             variety: TContentBlockVariety.Video,
         };
     },
 
-    toTiled: (): TTiledContentBlock => {
+    toTiled: (contentBlock: THeaderContentBlock): TTiledContentBlock => {
         return {
             contentBlocksTiles: [],
+            id: contentBlock.id,
             variety: TContentBlockVariety.Tiled,
         };
     },

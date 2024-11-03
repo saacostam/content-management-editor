@@ -8,16 +8,18 @@ import {
 } from "../../types";
 
 export const VideoContentBlockTransitions: TContentBlockTransitions<TVideoContentBlock> = {
-    toHeader: (): THeaderContentBlock => {
+    toHeader: (contentBlock: TVideoContentBlock): THeaderContentBlock => {
         return {
             content: "",
+            id: contentBlock.id,
             variety: TContentBlockVariety.Header,
         };
     },
 
-    toParagraph: (): TParagraphContentBlock => {
+    toParagraph: (contentBlock: TVideoContentBlock): TParagraphContentBlock => {
         return {
             content: "",
+            id: contentBlock.id,
             variety: TContentBlockVariety.Paragraph,
         };
     },
@@ -28,9 +30,10 @@ export const VideoContentBlockTransitions: TContentBlockTransitions<TVideoConten
         };
     },
 
-    toTiled: (): TTiledContentBlock => {
+    toTiled: (TVideoContentBlock): TTiledContentBlock => {
         return {
             contentBlocksTiles: [],
+            id: TVideoContentBlock.id,
             variety: TContentBlockVariety.Tiled,
         };
     },

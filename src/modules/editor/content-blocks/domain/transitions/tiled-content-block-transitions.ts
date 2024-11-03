@@ -8,22 +8,25 @@ import {
 } from "../../types";
 
 export const TiledContentBlockTransitions: TContentBlockTransitions<TTiledContentBlock> = {
-    toHeader: (): THeaderContentBlock => {
+    toHeader: (contentBlock: TTiledContentBlock): THeaderContentBlock => {
         return {
             content: "",
+            id: contentBlock.id,
             variety: TContentBlockVariety.Header,
         };
     },
 
-    toParagraph: (): TParagraphContentBlock => {
+    toParagraph: (contentBlock: TTiledContentBlock): TParagraphContentBlock => {
         return {
             content: "",
+            id: contentBlock.id,
             variety: TContentBlockVariety.Paragraph,
         };
     },
 
-    toVideo: (): TVideoContentBlock => {
+    toVideo: (contentBlock: TTiledContentBlock): TVideoContentBlock => {
         return {
+            id: contentBlock.id,
             url: "",
             variety: TContentBlockVariety.Video,
         };
