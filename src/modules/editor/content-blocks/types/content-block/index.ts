@@ -1,3 +1,4 @@
+export * from './base-content-block.types';
 export * from './header-content-block.types';
 export * from './paragraph-content-block.types';
 export * from './tiled-content-block.types';
