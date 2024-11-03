@@ -2,7 +2,7 @@ import { useCallback, useMemo, useState } from "react";
 import { initEditor } from "../domain";
 import { TContentBlock, addContentBlockFromRootTile } from "../../content-blocks";
 
-export function useEditor() {
+export function useEditorSource() {
     const [editor] = useState(initEditor());
 
     const addContentBlock = useCallback((args: {
