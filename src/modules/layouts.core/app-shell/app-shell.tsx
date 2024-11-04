@@ -17,7 +17,7 @@ export function Header() {
       <Title className="text-base-content">
         <PencilIcon /> Content Management Editor
       </Title>
-      <Paragraph>using React</Paragraph>
+      <Paragraph className="m-0">using React</Paragraph>
     </header>
   );
 }
