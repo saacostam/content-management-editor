@@ -1,18 +1,21 @@
 import { useCallback, useMemo, useState } from "react";
+import { TInitContentBlock, addContentBlockFromEditor } from "../../content-blocks";
 import { initEditor } from "../domain";
-import { TInitContentBlock, addContentBlockFromRootTile } from "../../content-blocks";
 
 export function useEditorSource() {
-    const [editor] = useState(initEditor());
+    const [editor, setEditor] = useState(initEditor());
 
     const addContentBlock = useCallback((args: {
         initContentBlock: TInitContentBlock,
         prefixPathIds: string[],
-    }) => addContentBlockFromRootTile({
-        rootTile: editor.rootContentBlockTile,
-        initContentBlock: args.initContentBlock,
-        prefixPathIds: args.prefixPathIds,
-    }), [editor.rootContentBlockTile]);
+    }) => setEditor(prevEditor => ({
+        ...prevEditor,
+        rootContentBlockTile: addContentBlockFromEditor({
+            initContentBlock: args.initContentBlock,
+            prefixPathIds: args.prefixPathIds,
+            editor: prevEditor,
+        })
+    })), []);
 
     return useMemo(() => ({
         addContentBlock,

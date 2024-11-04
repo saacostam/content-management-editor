@@ -1,16 +1,16 @@
 import { TContentBlockVariety } from "../content-block-variety.types";
 
 export type TInitContentBlock = {
-    type: TContentBlockVariety.Header,
+    variety: TContentBlockVariety.Header,
     content: string;
 } | {
-    type: TContentBlockVariety.Paragraph,
+    variety: TContentBlockVariety.Paragraph,
     content: string;
 } | {
-    type: TContentBlockVariety.Video,
+    variety: TContentBlockVariety.Video,
     url: string
 } | {
-    type: TContentBlockVariety.Tiled,
+    variety: TContentBlockVariety.Tiled,
     numberOfTiles: 1 | 2 | 3;
     prefixPathsOfParentTile: string[];
 }

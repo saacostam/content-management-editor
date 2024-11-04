@@ -1,18 +1,23 @@
 import { genId } from "../../../../utils.core";
+import { TEditor } from "../../../editor";
 import { CONTENT_BLOCKS_DOMAIN_ERROR_MESSAGES, ContentBlockDomainError } from "../../errors";
 import { TContentBlock, TContentBlockTile, TContentBlockVariety, THeaderContentBlock, TParagraphContentBlock, TTiledContentBlock, TVideoContentBlock, TInitContentBlock } from "../../types"
 
-export interface AddContentBlockFromRootTile {
+export interface AddContentBlockFromEditor {
     initContentBlock: TInitContentBlock;
     prefixPathIds: string[];
-    rootTile: TContentBlockTile;
+    editor: TEditor;
 }
 
-export const addContentBlockFromRootTile = ({
+export const addContentBlockFromEditor = ({
     initContentBlock,
     prefixPathIds,
-    rootTile,
-}: AddContentBlockFromRootTile) => {
+    editor,
+}: AddContentBlockFromEditor): TContentBlockTile => {
+    const {
+        rootContentBlockTile: rootTile,
+    } = editor;
+
     const currentTile = getTileByPrefixPaths({
         prefixPathIds,
         rootTile,
@@ -20,6 +25,8 @@ export const addContentBlockFromRootTile = ({
 
     const contentBlock = createContentBlock(initContentBlock);
     currentTile.contentBlocks.push(contentBlock);
+
+    return rootTile;
 }
 
 export const getTileByPrefixPaths = (args: {
@@ -61,7 +68,7 @@ export const getTileByPrefixPaths = (args: {
 export const createContentBlock = (
     initContentBlock: TInitContentBlock
 ): TContentBlock => {
-    if (initContentBlock.type === TContentBlockVariety.Header) {
+    if (initContentBlock.variety === TContentBlockVariety.Header) {
         const headerContentBlock: THeaderContentBlock = {
             id: genId(),
             content: initContentBlock.content,
@@ -69,7 +76,7 @@ export const createContentBlock = (
         }
 
         return headerContentBlock;
-    }else if (initContentBlock.type === TContentBlockVariety.Paragraph) {
+    }else if (initContentBlock.variety === TContentBlockVariety.Paragraph) {
         const paragraphContentBlock: TParagraphContentBlock = {
             id: genId(),
             content: initContentBlock.content,
@@ -77,7 +84,7 @@ export const createContentBlock = (
         }
 
         return paragraphContentBlock;
-    } else if (initContentBlock.type === TContentBlockVariety.Video) {
+    } else if (initContentBlock.variety === TContentBlockVariety.Video) {
         const videoContentBlock: TVideoContentBlock = {
             id: genId(),
             url: initContentBlock.url,
@@ -85,7 +92,7 @@ export const createContentBlock = (
         }
 
         return videoContentBlock;
-    } else if (initContentBlock.type === TContentBlockVariety.Tiled) {
+    } else if (initContentBlock.variety === TContentBlockVariety.Tiled) {
         const tiledContentBlock: TTiledContentBlock = {
             id: genId(),
             contentBlocksTiles: [],

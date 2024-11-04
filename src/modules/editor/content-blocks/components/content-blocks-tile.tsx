@@ -1,4 +1,5 @@
 import { TContentBlockTile } from "../types";
+import { AddContentBlockForm } from "./add-content-block-form";
 import { ContentBlock } from "./content-block/content-block";
 
 export interface ContentBlocksTileProps {
@@ -10,6 +11,7 @@ export function ContentBlocksTile({
 }: ContentBlocksTileProps) {
     const {
         contentBlocks,
+        prefixPathIds,
     } = tile;
 
     const contentBlocksList = contentBlocks.map((contentBlock) => {
@@ -21,5 +23,8 @@ export function ContentBlocksTile({
 
     return <>
         {contentBlocksList}
+        <AddContentBlockForm
+            prefixPathIds={prefixPathIds}
+        />
     </>
 }
