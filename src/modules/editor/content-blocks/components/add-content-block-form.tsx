@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { useEditor } from "../../editor";
 import { TContentBlockVariety } from "../types";
+import { Input } from "../../../components.core";
 
 export function AddContentBlockForm(props: {
     prefixPathIds: string[];
@@ -29,10 +30,10 @@ export function AddContentBlockForm(props: {
 
     return <>
         <form onSubmit={onSubmit}>
-            <input
-                ref={inputRef}
+            <Input
                 required
                 type="text"
+                ref={inputRef}
             />
         </form>
     </>

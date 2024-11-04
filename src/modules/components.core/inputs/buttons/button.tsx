@@ -1,15 +1,17 @@
 import { Button as HUIButton } from '@headlessui/react'
+import { PropsWithChildren } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 export interface ButtonProps {
-    disabled?: boolean;
     className?: string;
+    disabled?: boolean;
 }
 
 export default function Button({
+    children,
+    className,
     disabled,
-    className
-}: ButtonProps) {
+}: PropsWithChildren<ButtonProps>) {
   return (
     <HUIButton
         disabled={disabled}
@@ -19,7 +21,7 @@ export default function Button({
             className,
         )
     }>
-      Save changes
+      {children}
     </HUIButton>
   )
 }
