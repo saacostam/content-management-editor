@@ -1,17 +1,36 @@
+import { genId } from "../../../../utils.core";
 import { CONTENT_BLOCKS_DOMAIN_ERROR_MESSAGES, ContentBlockDomainError } from "../../errors";
-import { TContentBlock, TContentBlockTile, TContentBlockVariety, TTiledContentBlock } from "../../types"
+import { TContentBlock, TContentBlockTile, TContentBlockVariety, THeaderContentBlock, TParagraphContentBlock, TTiledContentBlock, TVideoContentBlock, TInitContentBlock } from "../../types"
 
 export interface AddContentBlockFromRootTile {
-    contentBlock: TContentBlock;
+    initContentBlock: TInitContentBlock;
     prefixPathIds: string[];
     rootTile: TContentBlockTile;
 }
 
 export const addContentBlockFromRootTile = ({
-    contentBlock,
+    initContentBlock,
     prefixPathIds,
     rootTile,
 }: AddContentBlockFromRootTile) => {
+    const currentTile = getTileByPrefixPaths({
+        prefixPathIds,
+        rootTile,
+    })
+
+    const contentBlock = createContentBlock(initContentBlock);
+    currentTile.contentBlocks.push(contentBlock);
+}
+
+export const getTileByPrefixPaths = (args: {
+    prefixPathIds: string[],
+    rootTile: TContentBlockTile
+}): TContentBlockTile => {
+    const {
+        prefixPathIds,
+        rootTile,
+    } = args
+
     const pathToTraverse = [...prefixPathIds]
     let currentTile = rootTile;
 
@@ -36,5 +55,45 @@ export const addContentBlockFromRootTile = ({
         currentTile = nextTile;
     }
 
-    currentTile.contentBlocks.push(contentBlock);
+    return currentTile;
+}
+
+export const createContentBlock = (
+    initContentBlock: TInitContentBlock
+): TContentBlock => {
+    if (initContentBlock.type === TContentBlockVariety.Header) {
+        const headerContentBlock: THeaderContentBlock = {
+            id: genId(),
+            content: initContentBlock.content,
+            variety: TContentBlockVariety.Header,
+        }
+
+        return headerContentBlock;
+    }else if (initContentBlock.type === TContentBlockVariety.Paragraph) {
+        const paragraphContentBlock: TParagraphContentBlock = {
+            id: genId(),
+            content: initContentBlock.content,
+            variety: TContentBlockVariety.Paragraph,
+        }
+
+        return paragraphContentBlock;
+    } else if (initContentBlock.type === TContentBlockVariety.Video) {
+        const videoContentBlock: TVideoContentBlock = {
+            id: genId(),
+            url: initContentBlock.url,
+            variety: TContentBlockVariety.Video,
+        }
+
+        return videoContentBlock;
+    } else if (initContentBlock.type === TContentBlockVariety.Tiled) {
+        const tiledContentBlock: TTiledContentBlock = {
+            id: genId(),
+            contentBlocksTiles: [],
+            variety: TContentBlockVariety.Tiled,
+        }
+
+        return tiledContentBlock;
+    }
+
+    throw new ContentBlockDomainError(CONTENT_BLOCKS_DOMAIN_ERROR_MESSAGES.INVALID_CONTENT_BLOCK_INITIALIZATION_TYPE);
 }
