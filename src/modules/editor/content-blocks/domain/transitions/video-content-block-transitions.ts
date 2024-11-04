@@ -1,40 +1,41 @@
 import {
-    TContentBlockTransitions,
-    TContentBlockVariety,
-    THeaderContentBlock,
-    TParagraphContentBlock,
-    TTiledContentBlock,
-    TVideoContentBlock
+  TContentBlockTransitions,
+  TContentBlockVariety,
+  THeaderContentBlock,
+  TParagraphContentBlock,
+  TTiledContentBlock,
+  TVideoContentBlock,
 } from "../../types";
 
-export const VideoContentBlockTransitions: TContentBlockTransitions<TVideoContentBlock> = {
+export const VideoContentBlockTransitions: TContentBlockTransitions<TVideoContentBlock> =
+  {
     toHeader: (contentBlock: TVideoContentBlock): THeaderContentBlock => {
-        return {
-            content: "",
-            id: contentBlock.id,
-            variety: TContentBlockVariety.Header,
-        };
+      return {
+        content: "",
+        id: contentBlock.id,
+        variety: TContentBlockVariety.Header,
+      };
     },
 
     toParagraph: (contentBlock: TVideoContentBlock): TParagraphContentBlock => {
-        return {
-            content: "",
-            id: contentBlock.id,
-            variety: TContentBlockVariety.Paragraph,
-        };
+      return {
+        content: "",
+        id: contentBlock.id,
+        variety: TContentBlockVariety.Paragraph,
+      };
     },
 
     toVideo: (contentBlock: TVideoContentBlock): TVideoContentBlock => {
-        return {
-            ...contentBlock,
-        };
+      return {
+        ...contentBlock,
+      };
     },
 
     toTiled: (TVideoContentBlock): TTiledContentBlock => {
-        return {
-            contentBlocksTiles: [],
-            id: TVideoContentBlock.id,
-            variety: TContentBlockVariety.Tiled,
-        };
+      return {
+        contentBlocksTiles: [],
+        id: TVideoContentBlock.id,
+        variety: TContentBlockVariety.Tiled,
+      };
     },
-}
+  };

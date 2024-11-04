@@ -1,2 +1,2 @@
-export * from './content-blocks';
-export * from './editor';
+export * from "./content-blocks";
+export * from "./editor";

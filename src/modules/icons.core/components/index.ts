@@ -1,1 +1,1 @@
-export * from './pencil.icon';
+export * from "./pencil.icon";

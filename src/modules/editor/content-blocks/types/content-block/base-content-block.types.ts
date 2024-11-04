@@ -1,3 +1,3 @@
 export interface TBaseContentBlock {
-    id: string;
+  id: string;
 }
