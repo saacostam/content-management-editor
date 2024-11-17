@@ -2,13 +2,14 @@ import { Button as HUIButton } from "@headlessui/react";
 import { PropsWithChildren } from "react";
 import { twMerge } from "tailwind-merge";
 
-export type ButtonType = "primary" | "ghost" | "accent";
+export type ButtonVariant = "primary" | "ghost" | "accent";
 
 export interface ButtonProps {
   className?: string;
   disabled?: boolean;
   onClick?: () => void;
-  type?: ButtonType;
+  type?: "submit" | "reset" | "button";
+  variant?: ButtonVariant;
 }
 
 export function Button({
@@ -16,23 +17,25 @@ export function Button({
   children,
   disabled,
   onClick,
-  type: _type,
+  type,
+  variant: _variant,
 }: PropsWithChildren<ButtonProps>) {
-  const type: ButtonType = _type ?? "primary";
+  const variant: ButtonVariant = _variant ?? "primary";
 
   return (
     <HUIButton
       className={twMerge(
         "btn btn-sm",
-        type === "primary"
+        variant === "primary"
           ? "btn-primary"
-          : type === "accent"
+          : variant === "accent"
             ? "btn-accent"
             : "btn-ghost",
         className,
       )}
       disabled={disabled}
       onClick={onClick}
+      type={type}
     >
       {children}
     </HUIButton>

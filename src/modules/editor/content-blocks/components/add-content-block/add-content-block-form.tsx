@@ -27,9 +27,9 @@ export function AddContentBlockForm(props: { prefixPathIds: string[] }) {
       <Button
         className="w-48 relative"
         onClick={onClickAddContentBlock}
-        type="accent"
+        variant="accent"
       >
-        <PlusIcon className="size-6 absolute left-2" />
+        <PlusIcon className="size-6 absolute left-1" />
         <span>New</span>
       </Button>
     </section>

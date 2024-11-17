@@ -45,7 +45,7 @@ export function ContentBlock({
               <Button
                 className="btn-circle"
                 onClick={onClickEditContentBlock}
-                type="ghost"
+                variant="ghost"
               >
                 <PencilIcon className="size-5" />
               </Button>

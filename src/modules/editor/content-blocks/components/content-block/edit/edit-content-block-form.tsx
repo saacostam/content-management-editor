@@ -5,6 +5,7 @@ import { transitionContentBlock } from "../../../domain";
 import { EditParagraphContentBlock } from "./edit-paragraph-content-block";
 import { Button } from "../../../../../components.core";
 import { TUseEditorReducerActionType, useEditor } from "../../../../editor";
+import { CheckIcon } from "../../../../../icons.core";
 
 export interface EditContentBlockProps {
   contentBlock: TContentBlock;
@@ -65,9 +66,12 @@ export function EditContentBlock({
         ) : (
           JSON.stringify(editableContentBlock)
         )}
-        <Button className="w-48 block mx-auto my-4" type="accent">
-          Save
-        </Button>
+        <div className="flex justify-center py-4">
+          <Button className="w-48 relative" variant="accent" type="submit">
+            <CheckIcon className="size-6 absolute left-1" />
+            <span>Save</span>
+          </Button>
+        </div>
       </form>
     </EditContentBlockLayout>
   );

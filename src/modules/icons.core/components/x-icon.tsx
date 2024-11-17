@@ -10,6 +10,7 @@ export function XIcon({ className }: IconProps) {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
+      aria-hidden="true"
       className={twMerge(ICON_COMMON_CLASSES, className)}
     >
       <path

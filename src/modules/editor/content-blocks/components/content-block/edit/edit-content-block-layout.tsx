@@ -34,7 +34,7 @@ export function EditContentBlockLayout({
         <Button
           className="btn-circle shrink-0"
           onClick={exitEditMode}
-          type="ghost"
+          variant="ghost"
         >
           <XIcon />
         </Button>
