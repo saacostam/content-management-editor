@@ -20,6 +20,11 @@ export function useEditorSource() {
               editor: state,
             }),
           };
+        case TUseEditorReducerActionType.SET_EDITABLE_CONTENT_BLOCK:
+          return {
+            ...state,
+            contentBlockThatIsBeingEditedId: action.payload.contentBlockId,
+          };
         default:
           return state;
       }

@@ -2,6 +2,9 @@ import { PropsWithChildren } from "react";
 import { twMerge } from "tailwind-merge";
 import { TContentBlockVariety } from "../../../types";
 import { CONTENT_BLOCK_VARIETIES } from "../../../constants";
+import { Button } from "../../../../../components.core";
+import { XIcon } from "../../../../../icons.core";
+import { TUseEditorReducerActionType, useEditor } from "../../../../editor";
 
 export interface EditContentBlockLayoutProps {
   formType: TContentBlockVariety;
@@ -13,30 +16,46 @@ export function EditContentBlockLayout({
   formType,
   setFormType,
 }: PropsWithChildren<EditContentBlockLayoutProps>) {
-  return (
-    <>
-      <nav role="tablist" className="tabs block tabs-bordered">
-        {CONTENT_BLOCK_VARIETIES.map((variety) => {
-          const isSelected = variety === formType;
+  const { editorDispatch } = useEditor();
 
-          return (
-            <button
-              className={twMerge("tab w-32", isSelected ? "tab-active" : "")}
-              key={variety}
-              onClick={() => setFormType(variety)}
-              role="tab"
-            >
-              {isSelected && (
-                <span className="badge badge-accent badge-xs absolute left-2" />
-              )}
-              {variety}
-            </button>
-          );
-        })}
+  const exitEditMode = () => {
+    editorDispatch({
+      type: TUseEditorReducerActionType.SET_EDITABLE_CONTENT_BLOCK,
+      payload: {
+        contentBlockId: null,
+      },
+    });
+  };
+
+  return (
+    <section className="py-4">
+      <nav className="flex gap-2 items-center">
+        <Button className="btn-circle" onClick={exitEditMode} type="ghost">
+          <XIcon />
+        </Button>
+        <div role="tablist" className="tabs tabs-bordered grow">
+          {CONTENT_BLOCK_VARIETIES.map((variety) => {
+            const isSelected = variety === formType;
+
+            return (
+              <button
+                className={twMerge("tab", isSelected ? "tab-active" : "")}
+                key={variety}
+                onClick={() => setFormType(variety)}
+                role="tab"
+              >
+                {isSelected && (
+                  <span className="badge badge-accent badge-xs absolute left-2" />
+                )}
+                {variety}
+              </button>
+            );
+          })}
+        </div>
       </nav>
-      <section role="tabpanel" className="my-2">
+      <div role="tabpanel" className="my-2">
         {children}
-      </section>
-    </>
+      </div>
+    </section>
   );
 }
