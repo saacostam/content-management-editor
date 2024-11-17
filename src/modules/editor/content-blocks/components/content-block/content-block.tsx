@@ -7,10 +7,12 @@ import { EditContentBlock } from "./edit";
 
 export interface ContentBlockProps {
   contentBlock: TContentBlock;
+  prefixPathIds: string[];
 }
 
 export function ContentBlock({
   contentBlock,
+  prefixPathIds,
 }: ContentBlockProps): Exclude<ReactNode, undefined> {
   const { editorDispatch, editor } = useEditor();
 
@@ -31,7 +33,10 @@ export function ContentBlock({
   return (
     <div className="w-full py-2">
       {isInEditorMode ? (
-        <EditContentBlock contentBlock={contentBlock} />
+        <EditContentBlock
+          contentBlock={contentBlock}
+          prefixPathIds={prefixPathIds}
+        />
       ) : (
         <>
           <Button
@@ -44,13 +49,13 @@ export function ContentBlock({
           {(() => {
             switch (contentBlock.variety) {
               case TContentBlockVariety.Paragraph:
-                return "Paragraph";
+                return JSON.stringify(contentBlock);
               case TContentBlockVariety.Header:
-                return "Header";
+                return JSON.stringify(contentBlock);
               case TContentBlockVariety.Video:
-                return "Video";
+                return JSON.stringify(contentBlock);
               case TContentBlockVariety.Tiled:
-                return "Tiled";
+                return JSON.stringify(contentBlock);
             }
           })()}
         </>

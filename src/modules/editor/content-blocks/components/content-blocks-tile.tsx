@@ -14,6 +14,7 @@ export function ContentBlocksTile({ tile }: ContentBlocksTileProps) {
       <ContentBlock
         key={contentBlock.id}
         contentBlock={contentBlock}
+        prefixPathIds={prefixPathIds}
       ></ContentBlock>
     );
   });

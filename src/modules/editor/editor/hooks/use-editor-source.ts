@@ -6,6 +6,7 @@ import {
   TUseEditorReducerAction,
   TUseEditorReducerActionType,
 } from "../types";
+import { updateContentBlock } from "../../content-blocks/domain/manipulation/update-content-block";
 
 export function useEditorSource() {
   const [editor, editorDispatch] = useReducer(
@@ -24,6 +25,15 @@ export function useEditorSource() {
           return {
             ...state,
             contentBlockThatIsBeingEditedId: action.payload.contentBlockId,
+          };
+        case TUseEditorReducerActionType.UPDATE_CONTENT_BLOCK:
+          return {
+            ...state,
+            rootContentBlockTile: updateContentBlock({
+              contentBlock: action.payload.contentBlock,
+              editor: state,
+              prefixPathIds: action.payload.prefixPathIds,
+            }),
           };
         default:
           return state;
