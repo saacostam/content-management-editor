@@ -1,6 +1,6 @@
 export enum TContentBlockVariety {
-  Header = "header",
-  Paragraph = "paragraph",
-  Video = "video",
-  Tiled = "tiled",
+  Header = "Header",
+  Paragraph = "Paragraph",
+  Video = "Video",
+  Tiled = "Tiled",
 }

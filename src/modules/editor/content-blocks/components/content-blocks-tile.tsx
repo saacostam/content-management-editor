@@ -1,6 +1,6 @@
 import { TContentBlockTile } from "../types";
-import { AddContentBlockForm } from "./add-content-block-form";
-import { ContentBlock } from "./content-block/content-block";
+import { AddContentBlockForm } from "./add-content-block";
+import { ContentBlock } from "./content-block";
 
 export interface ContentBlocksTileProps {
   tile: TContentBlockTile;

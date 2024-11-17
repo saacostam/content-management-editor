@@ -1,1 +1,2 @@
-export * from "./content-block";
+export * from "./edit";
+export * from "./show";
