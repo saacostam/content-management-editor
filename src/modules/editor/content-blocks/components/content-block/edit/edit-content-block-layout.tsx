@@ -5,6 +5,7 @@ import { CONTENT_BLOCK_VARIETIES } from "../../../constants";
 import { Button } from "../../../../../components.core";
 import { XIcon } from "../../../../../icons.core";
 import { TUseEditorReducerActionType, useEditor } from "../../../../editor";
+import { ContentBlockLayout } from "../core";
 
 export interface EditContentBlockLayoutProps {
   formType: TContentBlockVariety;
@@ -28,14 +29,17 @@ export function EditContentBlockLayout({
   };
 
   return (
-    <section className="flex gap-2">
-      <Button
-        className="btn-circle shrink-0"
-        onClick={exitEditMode}
-        type="ghost"
-      >
-        <XIcon />
-      </Button>
+    <ContentBlockLayout
+      mainCta={
+        <Button
+          className="btn-circle shrink-0"
+          onClick={exitEditMode}
+          type="ghost"
+        >
+          <XIcon />
+        </Button>
+      }
+    >
       <div className="grow">
         <nav role="tablist" className="tabs tabs-bordered">
           {CONTENT_BLOCK_VARIETIES.map((variety) => {
@@ -60,6 +64,6 @@ export function EditContentBlockLayout({
           {children}
         </div>
       </div>
-    </section>
+    </ContentBlockLayout>
   );
 }

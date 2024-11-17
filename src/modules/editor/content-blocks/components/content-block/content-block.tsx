@@ -4,6 +4,7 @@ import { TUseEditorReducerActionType, useEditor } from "../../../editor";
 import { Button } from "../../../../components.core";
 import { PencilIcon } from "../../../../icons.core";
 import { EditContentBlock } from "./edit";
+import { ContentBlockLayout } from "./core";
 
 export interface ContentBlockProps {
   contentBlock: TContentBlock;
@@ -39,25 +40,30 @@ export function ContentBlock({
         />
       ) : (
         <>
-          <Button
-            className="btn-circle"
-            onClick={onClickEditContentBlock}
-            type="ghost"
-          >
-            <PencilIcon className="size-5" />
-          </Button>
-          {(() => {
-            switch (contentBlock.variety) {
-              case TContentBlockVariety.Paragraph:
-                return JSON.stringify(contentBlock);
-              case TContentBlockVariety.Header:
-                return JSON.stringify(contentBlock);
-              case TContentBlockVariety.Video:
-                return JSON.stringify(contentBlock);
-              case TContentBlockVariety.Tiled:
-                return JSON.stringify(contentBlock);
+          <ContentBlockLayout
+            mainCta={
+              <Button
+                className="btn-circle"
+                onClick={onClickEditContentBlock}
+                type="ghost"
+              >
+                <PencilIcon className="size-5" />
+              </Button>
             }
-          })()}
+          >
+            {(() => {
+              switch (contentBlock.variety) {
+                case TContentBlockVariety.Paragraph:
+                  return JSON.stringify(contentBlock);
+                case TContentBlockVariety.Header:
+                  return JSON.stringify(contentBlock);
+                case TContentBlockVariety.Video:
+                  return JSON.stringify(contentBlock);
+                case TContentBlockVariety.Tiled:
+                  return JSON.stringify(contentBlock);
+              }
+            })()}
+          </ContentBlockLayout>
         </>
       )}
     </div>
