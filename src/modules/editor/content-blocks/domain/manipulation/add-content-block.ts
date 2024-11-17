@@ -26,7 +26,15 @@ export const addContentBlockFromEditor = ({
   prefixPathIds,
   editor,
 }: AddContentBlockFromEditor): TContentBlockTile => {
-  const { rootContentBlockTile: rootTile } = editor;
+  const { rootContentBlockTileId: rootTileId, contentBlockTiles } = editor;
+
+  const rootTile = contentBlockTiles.find((tile) => tile.id === rootTileId);
+
+  if (!rootTile) {
+    throw new ContentBlockDomainError(
+      CONTENT_BLOCKS_DOMAIN_ERROR_MESSAGES.NO_ROOT_CONTENT_BLOCK_TILE_FOUND,
+    );
+  }
 
   const currentTile = getTileByPrefixPaths({
     prefixPathIds,

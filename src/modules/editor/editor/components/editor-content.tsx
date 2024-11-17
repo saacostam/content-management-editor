@@ -4,7 +4,13 @@ import { useEditor } from "../contexts";
 export function EditorContent() {
   const { editor } = useEditor();
 
-  const { rootContentBlockTile } = editor;
+  const { rootContentBlockTileId, contentBlockTiles } = editor;
+
+  const rootContentBlockTile = contentBlockTiles.find(
+    (tile) => tile.id === rootContentBlockTileId,
+  );
+
+  if (!rootContentBlockTile) return null;
 
   return (
     <section className="text-white">

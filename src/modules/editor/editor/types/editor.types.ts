@@ -1,5 +1,6 @@
 import { TContentBlockTile } from "../../content-blocks";
 
 export interface TEditor {
-  rootContentBlockTile: TContentBlockTile;
+  rootContentBlockTileId: string;
+  contentBlockTiles: TContentBlockTile[];
 }

@@ -2,7 +2,10 @@ import { initContentBlocksTile } from "../../../content-blocks";
 import { TEditor } from "../../types";
 
 export const initEditor = (): TEditor => {
+  const rootContentBlock = initContentBlocksTile();
+
   return {
-    rootContentBlockTile: initContentBlocksTile(),
+    rootContentBlockTileId: rootContentBlock.id,
+    contentBlockTiles: [rootContentBlock],
   };
 };
