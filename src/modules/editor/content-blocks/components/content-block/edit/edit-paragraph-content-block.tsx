@@ -22,6 +22,7 @@ export function EditParagraphContentBlock({
         setContentBlock({ ...contentBlock, content: e.target.value })
       }
       ref={inputRef}
+      placeholder="✍️ Write something here..."
     />
   );
 }

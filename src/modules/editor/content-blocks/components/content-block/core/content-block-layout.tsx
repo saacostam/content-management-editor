@@ -9,7 +9,7 @@ export function ContentBlockLayout({
   children,
 }: PropsWithChildren<ContentBlockLayoutProps>) {
   return (
-    <section className="flex gap-2">
+    <section className="flex gap-2 text-base-content">
       {mainCta}
       {children}
     </section>

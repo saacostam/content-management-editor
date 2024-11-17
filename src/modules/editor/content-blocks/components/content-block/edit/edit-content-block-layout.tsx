@@ -41,7 +41,7 @@ export function EditContentBlockLayout({
       }
     >
       <div className="grow">
-        <nav role="tablist" className="tabs tabs-bordered">
+        <nav role="tablist" className="tabs tabs-bordered tabs-xs">
           {CONTENT_BLOCK_VARIETIES.map((variety) => {
             const isSelected = variety === formType;
 

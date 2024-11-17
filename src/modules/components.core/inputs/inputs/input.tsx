@@ -10,10 +10,7 @@ export const Input = forwardRef<
     <HUIInput
       ref={ref}
       disabled={disabled}
-      className={twMerge(
-        "block w-full rounded-md border-0 p-2 text-base ring-1 ring-inset ring-base-300 placeholder:text-base-100 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm/6",
-        className,
-      )}
+      className={twMerge("block w-full input input-ghost", className)}
       {...props}
     />
   );
