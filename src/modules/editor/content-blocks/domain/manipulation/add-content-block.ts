@@ -39,6 +39,7 @@ export const addContentBlockFromEditor = ({
   const currentTile = getTileByPrefixPaths({
     prefixPathIds,
     rootTile,
+    editor,
   });
 
   const contentBlock = createContentBlock(initContentBlock);
@@ -50,6 +51,7 @@ export const addContentBlockFromEditor = ({
 export const getTileByPrefixPaths = (args: {
   prefixPathIds: string[];
   rootTile: TContentBlockTile;
+  editor: TEditor;
 }): TContentBlockTile => {
   const { prefixPathIds, rootTile } = args;
 
@@ -64,12 +66,16 @@ export const getTileByPrefixPaths = (args: {
         CONTENT_BLOCKS_DOMAIN_ERROR_MESSAGES.INVALID_PREFIX_PATH_ID,
       );
 
-    const _findTileInTiledContentBlock = (tile: TContentBlockTile) =>
-      tile.id === nextPathId;
+    const _findTileInTiledContentBlock = (tileId: string) => {
+      const tile = args.editor.contentBlockTiles.find(
+        (tile) => tile.id === tileId,
+      );
+      return tile?.id === nextPathId;
+    };
 
     const nextContentBlock = currentTile.contentBlocks.find((block) => {
       if (block.variety !== TContentBlockVariety.Tiled) return false;
-      return block.contentBlocksTiles.find(_findTileInTiledContentBlock);
+      return block.contentBlocksTilesIds.find(_findTileInTiledContentBlock);
     }) as TTiledContentBlock | undefined;
 
     if (!nextContentBlock)
@@ -77,8 +83,12 @@ export const getTileByPrefixPaths = (args: {
         CONTENT_BLOCKS_DOMAIN_ERROR_MESSAGES.INVALID_PREFIX_PATH_ID,
       );
 
-    const nextTile = nextContentBlock.contentBlocksTiles.find(
+    const nextTileId = nextContentBlock.contentBlocksTilesIds.find(
       _findTileInTiledContentBlock,
+    );
+
+    const nextTile = args.editor.contentBlockTiles.find(
+      (tile) => tile.id === nextTileId,
     );
 
     if (!nextTile)
@@ -122,7 +132,7 @@ export const createContentBlock = (
   } else if (initContentBlock.variety === TContentBlockVariety.Tiled) {
     const tiledContentBlock: TTiledContentBlock = {
       id: genId(),
-      contentBlocksTiles: [],
+      contentBlocksTilesIds: [],
       variety: TContentBlockVariety.Tiled,
     };
 

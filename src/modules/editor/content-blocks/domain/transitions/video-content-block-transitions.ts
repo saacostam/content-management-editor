@@ -33,7 +33,7 @@ export const VideoContentBlockTransitions: TContentBlockTransitions<TVideoConten
 
     toTiled: (TVideoContentBlock): TTiledContentBlock => {
       return {
-        contentBlocksTiles: [],
+        contentBlocksTilesIds: [],
         id: TVideoContentBlock.id,
         variety: TContentBlockVariety.Tiled,
       };

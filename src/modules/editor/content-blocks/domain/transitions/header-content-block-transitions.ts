@@ -35,7 +35,7 @@ export const HeaderContentBlockTransitions: TContentBlockTransitions<THeaderCont
 
     toTiled: (contentBlock: THeaderContentBlock): TTiledContentBlock => {
       return {
-        contentBlocksTiles: [],
+        contentBlocksTilesIds: [],
         id: contentBlock.id,
         variety: TContentBlockVariety.Tiled,
       };

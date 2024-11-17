@@ -35,7 +35,7 @@ export const ParagraphContentBlockTransitions: TContentBlockTransitions<TParagra
 
     toTiled: (contentBlock: TParagraphContentBlock): TTiledContentBlock => {
       return {
-        contentBlocksTiles: [],
+        contentBlocksTilesIds: [],
         id: contentBlock.id,
         variety: TContentBlockVariety.Tiled,
       };
