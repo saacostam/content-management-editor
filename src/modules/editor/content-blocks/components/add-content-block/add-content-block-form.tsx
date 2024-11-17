@@ -1,22 +1,25 @@
 import { useCallback } from "react";
 import { Button } from "../../../../components.core";
-import { useEditor } from "../../../editor";
+import { TUseEditorReducerActionType, useEditor } from "../../../editor";
 import { TContentBlockVariety } from "../../types";
 import { PlusIcon } from "../../../../icons.core";
 
 export function AddContentBlockForm(props: { prefixPathIds: string[] }) {
-  const { addContentBlock } = useEditor();
+  const { editorDispatch } = useEditor();
 
   const onClickAddContentBlock = useCallback(
     () =>
-      addContentBlock({
-        initContentBlock: {
-          variety: TContentBlockVariety.Paragraph,
-          content: "",
+      editorDispatch({
+        type: TUseEditorReducerActionType.ADD_CONTENT_BLOCK,
+        payload: {
+          initContentBlock: {
+            variety: TContentBlockVariety.Paragraph,
+            content: "",
+          },
+          prefixPathIds: props.prefixPathIds,
         },
-        prefixPathIds: props.prefixPathIds,
       }),
-    [addContentBlock, props.prefixPathIds],
+    [editorDispatch, props.prefixPathIds],
   );
 
   return (
