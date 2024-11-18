@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import { Button, Input } from "../../../../../components.core";
+import { Input } from "../../../../../components.core";
 import { TTiledContentBlock, TTiledContentBlockSize } from "../../../types";
 import { TUseEditorReducerActionType, useEditor } from "../../../../editor";
-import { CheckIcon } from "../../../../../icons.core";
+import { EditContentBlockFormButtons } from "./edit-content-block-form-buttons";
 
 export interface EditTiledContentBlockProps {
   contentBlock: TTiledContentBlock;
@@ -62,12 +62,7 @@ export function EditTiledContentBlock({
         min={1}
         max={3}
       />
-      <div className="flex justify-center py-4">
-        <Button className="w-48 relative" variant="accent" type="submit">
-          <CheckIcon className="size-6 absolute left-1" />
-          <span>Save</span>
-        </Button>
-      </div>
+      <EditContentBlockFormButtons />
     </form>
   );
 }

@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react";
-import { Button, Input } from "../../../../../components.core";
+import { Input } from "../../../../../components.core";
 import { THeaderContentBlock } from "../../../types";
-import { CheckIcon } from "../../../../../icons.core";
 import { TUseEditorReducerActionType, useEditor } from "../../../../editor";
+import { EditContentBlockFormButtons } from "./edit-content-block-form-buttons";
 
 export interface EditHeaderContentBlockProps {
   contentBlock: THeaderContentBlock;
@@ -46,12 +46,7 @@ export function EditHeaderContentBlock({
         ref={inputRef}
         placeholder="✍️ Write something here..."
       />
-      <div className="flex justify-center py-4">
-        <Button className="w-48 relative" variant="accent" type="submit">
-          <CheckIcon className="size-6 absolute left-1" />
-          <span>Save</span>
-        </Button>
-      </div>
+      <EditContentBlockFormButtons />
     </form>
   );
 }
