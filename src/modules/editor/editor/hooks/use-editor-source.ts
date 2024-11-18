@@ -1,12 +1,15 @@
 import { useMemo, useReducer } from "react";
-import { addContentBlockFromEditor } from "../../content-blocks";
+import {
+  addContentBlockFromEditor,
+  setTiledContentBlockSize,
+  updateContentBlock,
+} from "../../content-blocks";
 import { initEditor } from "../domain";
 import {
   TEditor,
   TUseEditorReducerAction,
   TUseEditorReducerActionType,
 } from "../types";
-import { updateContentBlock } from "../../content-blocks/domain/manipulation/update-content-block";
 
 export function useEditorSource() {
   const [editor, editorDispatch] = useReducer(
@@ -33,6 +36,16 @@ export function useEditorSource() {
               contentBlock: action.payload.contentBlock,
               editor: state,
               prefixPathIds: action.payload.prefixPathIds,
+            }),
+          };
+        case TUseEditorReducerActionType.SET_TILED_CONTENT_BLOCK_SIZE:
+          return {
+            ...state,
+            rootContentBlockTile: setTiledContentBlockSize({
+              contentBlockId: action.payload.contentBlockId,
+              editor: state,
+              prefixPathIds: action.payload.prefixPathIds,
+              size: action.payload.size,
             }),
           };
         default:

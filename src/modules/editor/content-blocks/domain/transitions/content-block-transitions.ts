@@ -9,10 +9,10 @@ import { ParagraphContentBlockTransitions } from "./paragraph-content-block-tran
 import { TiledContentBlockTransitions } from "./tiled-content-block-transitions";
 import { VideoContentBlockTransitions } from "./video-content-block-transitions";
 
-export function transitionContentBlock(
+export function transitionContentBlock<T = TContentBlock>(
   currentContentBlock: TContentBlock,
   newContentBlockVariety: TContentBlockVariety,
-): TContentBlock {
+): T {
   const Transition: TContentBlockTransitions<TContentBlock> =
     currentContentBlock.variety === TContentBlockVariety.Header
       ? HeaderContentBlockTransitions
@@ -24,12 +24,12 @@ export function transitionContentBlock(
 
   switch (newContentBlockVariety) {
     case TContentBlockVariety.Header:
-      return Transition.toHeader(currentContentBlock);
+      return Transition.toHeader(currentContentBlock) as T;
     case TContentBlockVariety.Paragraph:
-      return Transition.toParagraph(currentContentBlock);
+      return Transition.toParagraph(currentContentBlock) as T;
     case TContentBlockVariety.Video:
-      return Transition.toVideo(currentContentBlock);
+      return Transition.toVideo(currentContentBlock) as T;
     case TContentBlockVariety.Tiled:
-      return Transition.toTiled(currentContentBlock);
+      return Transition.toTiled(currentContentBlock) as T;
   }
 }

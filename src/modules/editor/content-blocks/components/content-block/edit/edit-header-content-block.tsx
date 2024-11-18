@@ -1,22 +1,22 @@
 import { useEffect, useRef } from "react";
 import { Button, Input } from "../../../../../components.core";
-import { TParagraphContentBlock } from "../../../types";
+import { THeaderContentBlock } from "../../../types";
 import { CheckIcon } from "../../../../../icons.core";
 import { TUseEditorReducerActionType, useEditor } from "../../../../editor";
 
-export interface EditParagraphContentBlockProps {
-  contentBlock: TParagraphContentBlock;
+export interface EditHeaderContentBlockProps {
+  contentBlock: THeaderContentBlock;
   exitEditMode: () => void;
   prefixPathIds: string[];
-  setContentBlock: (contentBlock: TParagraphContentBlock) => void;
+  setContentBlock: (contentBlock: THeaderContentBlock) => void;
 }
 
-export function EditParagraphContentBlock({
+export function EditHeaderContentBlock({
   contentBlock,
   exitEditMode,
   prefixPathIds,
   setContentBlock,
-}: EditParagraphContentBlockProps) {
+}: EditHeaderContentBlockProps) {
   const { editorDispatch } = useEditor();
 
   const inputRef = useRef<HTMLInputElement>(null);

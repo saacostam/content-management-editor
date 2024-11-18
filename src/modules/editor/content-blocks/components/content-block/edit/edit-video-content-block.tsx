@@ -1,22 +1,22 @@
 import { useEffect, useRef } from "react";
 import { Button, Input } from "../../../../../components.core";
-import { TParagraphContentBlock } from "../../../types";
-import { CheckIcon } from "../../../../../icons.core";
+import { TVideoContentBlock } from "../../../types";
 import { TUseEditorReducerActionType, useEditor } from "../../../../editor";
+import { CheckIcon } from "../../../../../icons.core";
 
-export interface EditParagraphContentBlockProps {
-  contentBlock: TParagraphContentBlock;
+export interface EditVideoContentBlockProps {
+  contentBlock: TVideoContentBlock;
   exitEditMode: () => void;
   prefixPathIds: string[];
-  setContentBlock: (contentBlock: TParagraphContentBlock) => void;
+  setContentBlock: (contentBlock: TVideoContentBlock) => void;
 }
 
-export function EditParagraphContentBlock({
+export function EditVideoContentBlock({
   contentBlock,
   exitEditMode,
   prefixPathIds,
   setContentBlock,
-}: EditParagraphContentBlockProps) {
+}: EditVideoContentBlockProps) {
   const { editorDispatch } = useEditor();
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -39,12 +39,12 @@ export function EditParagraphContentBlock({
   return (
     <form onSubmit={submitForm}>
       <Input
-        value={contentBlock.content}
+        value={contentBlock.url}
         onChange={(e) =>
-          setContentBlock({ ...contentBlock, content: e.target.value })
+          setContentBlock({ ...contentBlock, url: e.target.value })
         }
         ref={inputRef}
-        placeholder="✍️ Write something here..."
+        placeholder="🔗 Drop a YouTube video URL here..."
       />
       <div className="flex justify-center py-4">
         <Button className="w-48 relative" variant="accent" type="submit">

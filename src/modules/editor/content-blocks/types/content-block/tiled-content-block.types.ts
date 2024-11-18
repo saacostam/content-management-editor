@@ -5,3 +5,5 @@ export interface TTiledContentBlock extends TBaseContentBlock {
   contentBlocksTilesIds: string[];
   variety: TContentBlockVariety.Tiled;
 }
+
+export type TTiledContentBlockSize = 1 | 2 | 3;

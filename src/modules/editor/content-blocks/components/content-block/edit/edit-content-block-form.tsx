@@ -3,9 +3,10 @@ import { TContentBlock, TContentBlockVariety } from "../../../types";
 import { EditContentBlockLayout } from "./edit-content-block-layout";
 import { transitionContentBlock } from "../../../domain";
 import { EditParagraphContentBlock } from "./edit-paragraph-content-block";
-import { Button } from "../../../../../components.core";
 import { TUseEditorReducerActionType, useEditor } from "../../../../editor";
-import { CheckIcon } from "../../../../../icons.core";
+import { EditHeaderContentBlock } from "./edit-header-content-block";
+import { EditVideoContentBlock } from "./edit-video-content-block";
+import { EditTiledContentBlock } from "./edit-tiled-content-block";
 
 export interface EditContentBlockProps {
   contentBlock: TContentBlock;
@@ -23,26 +24,14 @@ export function EditContentBlock({
       ...contentBlock,
     });
 
-  const onClickSave = useCallback(
-    (e: React.FormEvent) => {
-      e.preventDefault();
-
-      editorDispatch({
-        type: TUseEditorReducerActionType.UPDATE_CONTENT_BLOCK,
-        payload: {
-          contentBlock: { ...editableContentBlock },
-          prefixPathIds: prefixPathIds,
-        },
-      });
-      editorDispatch({
-        type: TUseEditorReducerActionType.SET_EDITABLE_CONTENT_BLOCK,
-        payload: {
-          contentBlockId: null,
-        },
-      });
-    },
-    [editableContentBlock, editorDispatch, prefixPathIds],
-  );
+  const exitEditMode = useCallback(() => {
+    editorDispatch({
+      type: TUseEditorReducerActionType.SET_EDITABLE_CONTENT_BLOCK,
+      payload: {
+        contentBlockId: null,
+      },
+    });
+  }, [editorDispatch]);
 
   const setFormType = useCallback(
     (variety: TContentBlockVariety) =>
@@ -57,22 +46,34 @@ export function EditContentBlock({
       formType={editableContentBlock.variety}
       setFormType={setFormType}
     >
-      <form onSubmit={onClickSave}>
-        {editableContentBlock.variety === TContentBlockVariety.Paragraph ? (
-          <EditParagraphContentBlock
-            contentBlock={editableContentBlock}
-            setContentBlock={setEditableContentBlock}
-          />
-        ) : (
-          JSON.stringify(editableContentBlock)
-        )}
-        <div className="flex justify-center py-4">
-          <Button className="w-48 relative" variant="accent" type="submit">
-            <CheckIcon className="size-6 absolute left-1" />
-            <span>Save</span>
-          </Button>
-        </div>
-      </form>
+      {editableContentBlock.variety === TContentBlockVariety.Paragraph ? (
+        <EditParagraphContentBlock
+          contentBlock={editableContentBlock}
+          exitEditMode={exitEditMode}
+          prefixPathIds={prefixPathIds}
+          setContentBlock={setEditableContentBlock}
+        />
+      ) : editableContentBlock.variety === TContentBlockVariety.Header ? (
+        <EditHeaderContentBlock
+          contentBlock={editableContentBlock}
+          exitEditMode={exitEditMode}
+          prefixPathIds={prefixPathIds}
+          setContentBlock={setEditableContentBlock}
+        />
+      ) : editableContentBlock.variety === TContentBlockVariety.Video ? (
+        <EditVideoContentBlock
+          contentBlock={editableContentBlock}
+          exitEditMode={exitEditMode}
+          prefixPathIds={prefixPathIds}
+          setContentBlock={setEditableContentBlock}
+        />
+      ) : (
+        <EditTiledContentBlock
+          contentBlock={editableContentBlock}
+          exitEditMode={exitEditMode}
+          prefixPathIds={prefixPathIds}
+        />
+      )}
     </EditContentBlockLayout>
   );
 }

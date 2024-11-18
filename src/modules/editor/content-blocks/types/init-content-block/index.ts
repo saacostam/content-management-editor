@@ -1,3 +1,4 @@
+import { TTiledContentBlockSize } from "../content-block";
 import { TContentBlockVariety } from "../content-block-variety.types";
 
 export type TInitContentBlock =
@@ -15,6 +16,6 @@ export type TInitContentBlock =
     }
   | {
       variety: TContentBlockVariety.Tiled;
-      numberOfTiles: 1 | 2 | 3;
+      numberOfTiles: TTiledContentBlockSize;
       prefixPathsOfParentTile: string[];
     };
